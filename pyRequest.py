@@ -26,6 +26,7 @@ class RequestObserver(unittest.TestCase) :
         print('Post request parameter that is sent ' + str(ranNum))
         print("----------RESPONSE--------")
         print(r.text)
+        print("Statusi : "  + r.status_code)
 
     #OK
     def test_succesful_min_max(self):
@@ -45,6 +46,7 @@ class RequestObserver(unittest.TestCase) :
         print("Response that is being sent")
         print("--------------RESPONSE-----------------")
         print(r.text)
+        print("Statusi : "  + r.status_code)
     
     #OK
     def test_succesful_sayHello(self) :
@@ -61,7 +63,7 @@ class RequestObserver(unittest.TestCase) :
         print('Post request parameter that is sent ' + name)
         print("----------RESPONSE--------")
         print(r.text)
-
+        print("Statusi : "  + r.status_code)
     
     #OK
     def test_calculate_sum(self) :
@@ -75,7 +77,7 @@ class RequestObserver(unittest.TestCase) :
         print('GET request parameter that is sent ' + str(a)  + " with " + str(b))
         print("----------RESPONSE--------")
         print(r.text)
-
+        print("Statusi : "  + r.status_code)
     #OK
     def test_find_by_category(self) :
 
@@ -87,7 +89,7 @@ class RequestObserver(unittest.TestCase) :
         print('Get request parameter that is sent ' + category)
         print("----------RESPONSE--------")
         print(r.text)
-
+        print("Statusi : "  + r.status_code)
     #OK
     def test_insert_product(self):
 
@@ -107,7 +109,7 @@ class RequestObserver(unittest.TestCase) :
         print("---------Insert----------")
         print("----------RESPONSE--------")
         print(r.text)
-
+        print("Statusi : "  + r.status_code)
 
      
 
