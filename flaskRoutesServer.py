@@ -6,7 +6,7 @@ app = Flask(__name__)
 import Calculations
 import uuid
 import pymongo
-
+import helper
 from pymongo import *
 
 
@@ -60,20 +60,24 @@ col = db["products"]
 
 
 @app.route('/insert_product',methods=['POST'])
-def saveProduct():
-    try:
-        responseJson = request.json
-        db.products.insert_one({"product_id" : uuid.uuid4().hex[:12],
-            "name" : str(responseJson["name"]),
-                                "category" : str(responseJson["category"]),
-                                "price" : responseJson["price"],
-                                "basePrice" : responseJson["basePrice"]})
-        
-        return jsonify({"message " : "Produkti u insertua"})
+def saveProduct() :
+        try:
 
-    except:
+            responseJson = request.json
+
+            db.products.insert_one({"product_id" : helper.generateUniqueID(),
+                "name" : str(responseJson["name"]),
+                                    "category" : str(responseJson["category"]),
+                                    "price" : responseJson["price"],
+                                    "basePrice" : responseJson["basePrice"]})
+            
+            return jsonify({"message " : "Produkti u insertua",
+                            "status" : 201})
+
+        except:
         
-        return jsonify({"error" : "Ndodhi nje gabim gjate insertimit"})
+            return jsonify({"error" : "Ndodhi nje gabim gjate insertimit",
+                        "status" : 500})
 
 
 
@@ -85,9 +89,11 @@ def findByCategory():
     if(category):
         try:
             products = db.products.find({"category" : category})
-            return jsonify({"data" : str(list(products))})
+            return jsonify({"data" : str(list(products)),
+            "status" : 200 })
         except:
-            return jsonify({"error " : "Error happened"})
+            return jsonify({"error " : "Not found with this category",
+            "status" : 404})
     else:
             return ""
 

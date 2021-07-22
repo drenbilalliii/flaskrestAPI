@@ -4,7 +4,6 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 
-
 class Calculation :
 
     def triggerSayHello(self,name) :
